@@ -56,6 +56,7 @@ class Showcase extends StatefulWidget {
   final bool? disposeOnTap;
   final bool disableAnimation;
   final EdgeInsets overlayPadding;
+  final double tooltipBorderRadius;
 
   const Showcase(
       {required this.key,
@@ -77,8 +78,8 @@ class Showcase extends StatefulWidget {
       this.contentPadding =
           const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       this.onToolTipClick,
-      this.overlayPadding = EdgeInsets.zero})
-      : height = null,
+    this.tooltipBorderRadius = 8.0,
+  })  : height = null,
         width = null,
         container = null,
         assert(overlayOpacity >= 0.0 && overlayOpacity <= 1.0,
@@ -115,6 +116,7 @@ class Showcase extends StatefulWidget {
     this.disableAnimation = false,
     this.contentPadding = const EdgeInsets.symmetric(vertical: 8),
     this.overlayPadding = EdgeInsets.zero,
+    this.tooltipBorderRadius = 8.0,
   })  : showArrow = false,
         onToolTipClick = null,
         assert(overlayOpacity >= 0.0 && overlayOpacity <= 1.0,
@@ -291,6 +293,7 @@ class _ShowcaseState extends State<Showcase> with TickerProviderStateMixin {
               contentWidth: widget.width,
               onTooltipTap: _getOnTooltipTap,
               contentPadding: widget.contentPadding,
+              borderRadius: widget.tooltipBorderRadius,
             ),
           ],
         ),
@@ -303,6 +306,7 @@ class _TargetWidget extends StatelessWidget {
   final Animation<double>? widthAnimation;
   final VoidCallback? onTap;
   final ShapeBorder? shapeBorder;
+  final double borderRadius;
 
   _TargetWidget({
     Key? key,
@@ -311,6 +315,7 @@ class _TargetWidget extends StatelessWidget {
     this.widthAnimation,
     this.onTap,
     this.shapeBorder,
+    this.borderRadius = 8.0,
   }) : super(key: key);
 
   @override
@@ -328,8 +333,8 @@ class _TargetWidget extends StatelessWidget {
             decoration: ShapeDecoration(
               shape: shapeBorder ??
                   RoundedRectangleBorder(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(8),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(borderRadius),
                     ),
                   ),
             ),

@@ -45,6 +45,7 @@ class ToolTipWidget extends StatefulWidget {
   static late bool isArrowUp;
   final VoidCallback? onTooltipTap;
   final EdgeInsets? contentPadding;
+  final double borderRadius;
 
   ToolTipWidget(
       {this.position,
@@ -62,6 +63,7 @@ class ToolTipWidget extends StatefulWidget {
       this.contentHeight,
       this.contentWidth,
       this.onTooltipTap,
+      this.borderRadius = 8.0,
       this.contentPadding = const EdgeInsets.symmetric(vertical: 8)});
 
   @override
@@ -214,7 +216,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
                     padding:
                         EdgeInsets.only(top: paddingTop, bottom: paddingBottom),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(widget.borderRadius),
                       child: GestureDetector(
                         onTap: widget.onTooltipTap,
                         child: Container(
