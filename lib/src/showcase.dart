@@ -38,6 +38,7 @@ class Showcase extends StatefulWidget {
   final Widget child;
   final String? title;
   final String? description;
+  final TextAlign? descriptionAlign;
   final ShapeBorder? shapeBorder;
   final TextStyle? titleTextStyle;
   final TextStyle? descTextStyle;
@@ -58,26 +59,28 @@ class Showcase extends StatefulWidget {
   final EdgeInsets overlayPadding;
   final double tooltipBorderRadius;
 
-  const Showcase(
-      {required this.key,
-      required this.child,
-      this.title,
-      required this.description,
-      this.shapeBorder,
-      this.overlayColor = Colors.black,
-      this.overlayOpacity = 0.75,
-      this.titleTextStyle,
-      this.descTextStyle,
-      this.showcaseBackgroundColor = Colors.white,
-      this.textColor = Colors.black,
-      this.showArrow = true,
-      this.onTargetClick,
-      this.disposeOnTap,
-      this.animationDuration = const Duration(milliseconds: 2000),
-      this.disableAnimation = false,
-      this.contentPadding =
-          const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-      this.onToolTipClick,
+  const Showcase({
+    required this.key,
+    required this.child,
+    this.title,
+    required this.description,
+    this.descriptionAlign = TextAlign.left,
+    this.shapeBorder,
+    this.overlayColor = Colors.black,
+    this.overlayOpacity = 0.75,
+    this.titleTextStyle,
+    this.descTextStyle,
+    this.showcaseBackgroundColor = Colors.white,
+    this.textColor = Colors.black,
+    this.showArrow = true,
+    this.onTargetClick,
+    this.disposeOnTap,
+    this.animationDuration = const Duration(milliseconds: 2000),
+    this.disableAnimation = false,
+    this.contentPadding =
+        const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+    this.onToolTipClick,
+    this.overlayPadding = EdgeInsets.zero,
     this.tooltipBorderRadius = 8.0,
   })  : height = null,
         width = null,
@@ -103,6 +106,7 @@ class Showcase extends StatefulWidget {
     required this.width,
     this.title,
     this.description,
+    this.descriptionAlign = TextAlign.left,
     this.shapeBorder,
     this.overlayColor = Colors.black,
     this.overlayOpacity = 0.75,
@@ -282,6 +286,7 @@ class _ShowcaseState extends State<Showcase> with TickerProviderStateMixin {
               screenSize: screenSize,
               title: widget.title,
               description: widget.description,
+              descriptionAlign: widget.descriptionAlign,
               animationOffset: _slideAnimation,
               titleTextStyle: widget.titleTextStyle,
               descTextStyle: widget.descTextStyle,

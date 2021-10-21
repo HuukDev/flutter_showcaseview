@@ -33,6 +33,7 @@ class ToolTipWidget extends StatefulWidget {
   final Size? screenSize;
   final String? title;
   final String? description;
+  final TextAlign? descriptionAlign;
   final Animation<double>? animationOffset;
   final TextStyle? titleTextStyle;
   final TextStyle? descTextStyle;
@@ -53,6 +54,7 @@ class ToolTipWidget extends StatefulWidget {
       this.screenSize,
       this.title,
       this.description,
+      this.descriptionAlign = TextAlign.left,
       this.animationOffset,
       this.titleTextStyle,
       this.descTextStyle,
@@ -246,6 +248,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
                                         : Container(),
                                     Text(
                                       widget.description!,
+                                      textAlign: widget.descriptionAlign!,
                                       style: widget.descTextStyle ??
                                           Theme.of(context)
                                               .textTheme
